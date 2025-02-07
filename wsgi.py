@@ -71,3 +71,15 @@ def delete_user(username):
   db.session.delete(bob)
   db.session.commit()
   print(f'{username} deleted')
+
+@app.cli.command("init", help="Creates and initializes the database")
+def initialize():
+  db.drop_all()
+  db.init_app(app)
+  db.create_all()
+  bob = User('bob', 'bob@mail.com', 'bobpass')
+  bob.todos.append(Todo('wash car'))
+  db.session.add(bob)
+  db.session.commit()
+  print(bob)
+  print('database intialized')
