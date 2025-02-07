@@ -1,5 +1,5 @@
 import click, sys
-from models import db, User
+from models import db, User, Todo
 from app import app
 from sqlalchemy.exc import IntegrityError
 
@@ -44,7 +44,7 @@ def change_email(username, email):
   db.session.commit()
   print(bob)
 
-  @app.cli.command('create-user')
+@app.cli.command('create-user')
 @click.argument('username', default='rick')
 @click.argument('email', default='rick@mail.com')
 @click.argument('password', default='rickpass')
