@@ -1,0 +1,118 @@
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/flask/cli.py", line 1064, in main
+    cli.main()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/flask/cli.py", line 358, in decorator
+    return __ctx.invoke(f, *args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/runner/workspace/wsgi.py", line 80, in initialize
+    bob = User('bob', 'bob@mail.com', 'bobpass')
+  File "<string>", line 4, in __init__
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 479, in _initialize_instance
+    with util.safe_reraise():
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 477, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/runner/workspace/models.py", line 39, in __init__
+    self.set_password(password)
+  File "/home/runner/workspace/models.py", line 43, in set_password
+    self.password = generate_password_hash(password, method='sha256')
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/werkzeug/security.py", line 101, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/werkzeug/security.py", line 66, in _hash_internal
+    raise ValueError(f"Invalid hash method '{method}'.")
+ValueError: Invalid hash method 'sha256'.
+ Environment updated. Reloading shell...
+~/workspace$ flask init
+<User 1 bob - bob@mail.com>
+database intialized
+~/workspace$ flask get-todos bob
+[<Todo: 1 | bob | wash car | not done>]
+~/workspace$ flask add-todo bob "Wash dishes"
+~/workspace$ flask add-todo bob sweep floor
+Usage: flask add-todo [OPTIONS] [USERNAME] [TEXT]
+Try 'flask add-todo --help' for help.
+
+Error: Got unexpected extra argument (floor)
+~/workspace$ flask add-todo bob "Sweep floor"
+To-do added!
+~/workspace$ flask get-todos bob
+[<Todo: 1 | bob | wash car | not done>, <Todo: 2 | bob | Wash dishes | not done>, <Todo: 3 | bob | Sweep floor | not done>]
+~/workspace$ flask toggle-todo bob 1
+wash car is done!
+~/workspace$ flask get-todos bob
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1770, in _execute_context
+    self.dialect.do_execute(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: category
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/flask/cli.py", line 1064, in main
+    cli.main()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/flask/cli.py", line 358, in decorator
+    return __ctx.invoke(f, *args, **kwargs)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/runner/workspace/wsgi.py", line 90, in get_user_todos
+    bob = User.query.filter_by(username=username).first()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2750, in first
+    return self.limit(1)._iter().first()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2834, in _iter
+    result = self.session.execute(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 324, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1451, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1813, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1994, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1770, in _execute_context
+    self.dialect.do_execute(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: category
+[SQL: SELECT anon_1.user_id AS anon_1_user_id, anon_1.user_username AS anon_1_user_username, anon_1.user_email AS anon_1_user_email, anon_1.user_password AS anon_1_user_password, category_1.id AS category_1_id, category_1.user_id AS category_1_user_id, category_1.text AS category_1_text 
+FROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password AS user_password 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?) AS anon_1 LEFT OUTER JOIN category AS category_1 ON anon_1.user_id = category_1.user_id]
+[parameters: ('bob', 1, 0)]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
