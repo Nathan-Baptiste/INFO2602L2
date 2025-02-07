@@ -17,8 +17,9 @@ class Todo(db.Model):
     db.session.add(self)
     db.session.commit()
 
-  def __init__(self, text):
+  def __init__(self, text, user_id=None):
       self.text = text
+      self.user_id = user_id
 
   def __repr__(self):
 
