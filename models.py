@@ -47,6 +47,7 @@ class User(db.Model):
       
   def add_todo_category(self, todo_id, category_text):
       todo = Todo.query.filter_by(id=todo_id, user_id=self.id).first()
+      print(todo)
       if not todo:
           return False
           
