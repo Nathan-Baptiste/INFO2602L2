@@ -107,6 +107,7 @@ def add_task(username, text):
   db.session.commit()
   print('To-do added!')
 
+
 @click.argument('todo_id', default=1)
 @click.argument('username', default='bob')
 @app.cli.command('toggle-todo')
